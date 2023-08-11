@@ -23,9 +23,10 @@ for (const monthName in months) {
   monthSums[monthName] = 0;
   months[monthName].forEach(element => {
     const title = element.getAttribute('data-original-title');
-    const time = parseFloat(title.replace("h","."));
+    const time = parseFloat(title.replace("h", "."));
     if (!isNaN(time)) {
-      monthSums[monthName] += time;
+      monthSums[monthName] += Math.floor(time);
+      monthSums[monthName] += (time - Math.floor(time)) / 6 * 10;
     }
   });
   monthSums[monthName] = (monthSums[monthName] + ((monthSums[monthName] - Math.floor(monthSums[monthName])) * 0.6)).toFixed(2);
